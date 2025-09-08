@@ -27,7 +27,8 @@ services:
       - "${PGADMIN_PORT}:80"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-      - ./live_sql:/pgadmin-scripts   #sql file save and load
+      #- ./live_sql:/var/lib/pgadmin/storage/admin_localhost/scripts   #file permission issues fix later
+      #- ./live_sql:/var/lib/pgadmin/storage/scripts
 volumes:
   postgres-data:
   pgadmin-data:
