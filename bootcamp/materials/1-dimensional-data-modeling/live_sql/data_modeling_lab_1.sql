@@ -64,3 +64,17 @@ FROM today t FULL OUTER JOIN yesterday y
 
 SELECT * FROM players WHERE current_season = 2001
 AND player_name = 'Michael Jordan';
+
+
+-- unnesting the season_stats array to the original player_seasons table
+WITH unnested AS(
+	SELECT player_name,
+			UNNEST(season_stats)::season_stats AS season_stats
+	FROM players
+	WHERE current_season = 2001
+	AND player_name = 'Michael Jordan'
+)
+
+SELECT player_name,
+		(season_stats::season_stats).*
+FROM unnested
